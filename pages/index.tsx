@@ -5,6 +5,7 @@ import Skills from '../components/Skills/Skills';
 import JobExperience from '../components/JobExperience/JobExperience';
 import Education from '../components/Education/Education';
 import CompEducation from '../components/CompEducation/CompEducation';
+import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 
 const Home: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
       <JobExperience />
       <Education />
       <CompEducation />
+      <FeaturedProjects />
     </div>
   );
 };
