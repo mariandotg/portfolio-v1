@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@redux-devtools/extension": "^3.2.2",
+    "framer-motion": "^6.3.11",
     "next": "12.1.6",
     "next-redux-wrapper": "^7.0.5",
     "react": "18.1.0",
