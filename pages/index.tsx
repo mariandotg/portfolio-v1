@@ -4,6 +4,7 @@ import Info from '../components/Info/Info';
 import Skills from '../components/Skills/Skills';
 import JobExperience from '../components/JobExperience/JobExperience';
 import Education from '../components/Education/Education';
+import CompEducation from '../components/CompEducation/CompEducation';
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <Skills />
       <JobExperience />
       <Education />
+      <CompEducation />
     </div>
   );
 };
