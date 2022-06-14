@@ -9,7 +9,7 @@ import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className='p-8'>
       <About />
       <Info />
       <Skills />
