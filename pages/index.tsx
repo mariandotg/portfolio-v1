@@ -3,6 +3,7 @@ import About from '../components/About/About';
 import Info from '../components/Info/Info';
 import Skills from '../components/Skills/Skills';
 import JobExperience from '../components/JobExperience/JobExperience';
+import Education from '../components/Education/Education';
 
 const Home: NextPage = () => {
   return (
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
       <Info />
       <Skills />
       <JobExperience />
+      <Education />
     </div>
   );
 };
