@@ -1,3 +1,5 @@
+import Button from '../Button/Button';
+
 const FeaturedProjects = () => {
   return (
     <section className='flex flex-col gap-4'>
@@ -20,8 +22,8 @@ const FeaturedProjects = () => {
               <p>Description</p>
             </div>
             <div className='flex self-end gap-4'>
-              <button>Button 1</button>
-              <button>Button 2</button>
+              <Button variant='secondary'>Button 2</Button>
+              <Button variant='primary'>Button 1</Button>
             </div>
           </div>
         </div>
@@ -40,8 +42,8 @@ const FeaturedProjects = () => {
               <p>Description</p>
             </div>
             <div className='flex self-end gap-4'>
-              <button>Button 1</button>
-              <button>Button 2</button>
+              <Button variant='secondary'>Button 2</Button>
+              <Button variant='primary'>Button 1</Button>
             </div>
           </div>
         </div>
