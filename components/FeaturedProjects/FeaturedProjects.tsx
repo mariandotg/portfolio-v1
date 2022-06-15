@@ -1,20 +1,52 @@
 const FeaturedProjects = () => {
   return (
-    <>
-      <h2>Featured Projects</h2>
-      <section>
+    <section className='flex flex-col gap-4'>
+      <h2 className='font-bold text-section-title text-light-accent'>
+        Featured Projects
+      </h2>
+      <div className='flex flex-col gap-4'>
         <div>
-          <img src='' alt='project' />
+          <img
+            className='object-cover object-left-top w-full h-52 rounded-tl-base rounded-tr-base'
+            src='./me.png'
+            alt='project'
+          />
+          <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
+            <div className='flex flex-col gap-2'>
+              <h3 className='font-bold text-section-subtitle text-light-accent'>
+                Project title
+              </h3>
+              <p className='text-disabled'>Period</p>
+              <p>Description</p>
+            </div>
+            <div className='flex self-end gap-4'>
+              <button>Button 1</button>
+              <button>Button 2</button>
+            </div>
+          </div>
         </div>
         <div>
-          <h3>Project title</h3>
-          <p>Period</p>
-          <p>Description</p>
-          <button>Button 1</button>
-          <button>Button 2</button>
+          <img
+            className='object-cover object-left-top w-full h-52 rounded-tl-base rounded-tr-base'
+            src='./me.png'
+            alt='project'
+          />
+          <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
+            <div className='flex flex-col gap-2'>
+              <h3 className='font-bold text-section-subtitle text-light-accent'>
+                Project title
+              </h3>
+              <p className='text-disabled'>Period</p>
+              <p>Description</p>
+            </div>
+            <div className='flex self-end gap-4'>
+              <button>Button 1</button>
+              <button>Button 2</button>
+            </div>
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
