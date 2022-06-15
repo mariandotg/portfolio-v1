@@ -4,7 +4,7 @@ const JobExperience = () => {
       <h2 className='font-bold text-section-title text-light-accent'>
         Job Experience
       </h2>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-4'>
         <div className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'>
           <div>
             <h3 className='font-bold text-section-subtitle text-light-accent'>
