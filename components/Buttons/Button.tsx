@@ -4,14 +4,18 @@ interface props {
   children: ReactNode;
   variant: 'primary' | 'secondary';
   url?: string;
+  icon?: boolean;
 }
 
-const Button = ({ children, variant = 'primary', url }: props) => {
-  const style = `${
-    variant === 'primary'
-      ? 'bg-light-accent border-transparent text-white'
-      : 'bg-transparent border-light-accent text-light-accent'
-  } px-8 py-4 w-fit border-2 rounded-xl font-bold`;
+const Button = ({ children, variant, url, icon }: props) => {
+  const variants = {
+    primary: 'bg-light-accent border-transparent text-white',
+    secondary: 'bg-transparent border-light-accent text-light-accent',
+  };
+
+  const style = `${variants[variant]} ${
+    icon ? 'p-4' : 'px-8 py-4'
+  } w-fit border-2 rounded-xl font-bold`;
 
   return (
     <>
