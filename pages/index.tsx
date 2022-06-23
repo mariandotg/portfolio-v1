@@ -1,4 +1,6 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { useSelector } from 'react-redux';
+
 import About from '../components/About/About';
 import Info from '../components/Info/Info';
 import Skills from '../components/Skills/Skills';
@@ -7,11 +9,12 @@ import Education from '../components/Education/Education';
 import CompEducation from '../components/CompEducation/CompEducation';
 import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 import Header from '../components/Header/Header';
-import { getContentfulData } from '../services/contentful';
-import contentfulDataAdapter from '../adapters/contentfulDataAdapter';
+import { fetchData, selectData } from '../app/store/slices/data';
+import { wrapper } from '../app';
 
-const Home: NextPage = ({ data }: any) => {
-  console.log(data);
+const Home: NextPage = () => {
+  const data = useSelector(selectData);
+  console.log('testing', data);
   return (
     <>
       <Header />
@@ -29,13 +32,16 @@ const Home: NextPage = ({ data }: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await getContentfulData();
-  return {
-    props: {
-      data,
-    },
-  };
-};
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async (ctx) => {
+    try {
+      await store.dispatch(fetchData()).unwrap();
+    } catch (rejectedValueOrSerializedError) {
+      console.log('error', rejectedValueOrSerializedError);
+    }
+    return {
+      props: {},
+    };
+  });
 
 export default Home;
