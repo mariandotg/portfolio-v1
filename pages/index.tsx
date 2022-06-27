@@ -11,6 +11,7 @@ import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 import Header from '../components/Header/Header';
 import { fetchData, selectData } from '../app/store/slices/data';
 import { wrapper } from '../app';
+import Footer from '../components/Footer/Footer';
 
 const Home: NextPage = () => {
   const data = useSelector(selectData);
@@ -28,6 +29,7 @@ const Home: NextPage = () => {
         <CompEducation />
         <FeaturedProjects />
       </div>
+      <Footer />
     </>
   );
 };
