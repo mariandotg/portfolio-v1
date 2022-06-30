@@ -4,8 +4,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { getContentfulData } from '../../../services/contentful';
 
 import { AppState } from '../..';
-import { CardEntry, DataFormatted, SectionEntry } from '../../../models/data';
+import { DataFormatted } from '../../../models/data';
 import { ActionHYDRATE, ActionWithPayload } from '../../../models/actions';
+import contentfulDataAdapter from '../../../adapters/contentfulDataAdapter';
 
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
   const response = await getContentfulData();
@@ -32,22 +33,7 @@ export const dataSlice = createSlice({
         state.loading = 'true';
       })
       .addCase(fetchData.fulfilled, (state, action: ActionWithPayload) => {
-        state.sections = action.payload!.reduce<DataFormatted>(
-          (acc: DataFormatted, section: SectionEntry) => {
-            const cards = section.fields.cards
-              ? section.fields.cards.reduce(
-                  (acc: object, card: CardEntry, index: number) => {
-                    const rest = { ...card.fields, id: card.sys.id };
-                    return { ...acc, [index]: rest };
-                  },
-                  {}
-                )
-              : null;
-            const rest = { ...section.fields, cards };
-            return { ...acc, [section.fields.id]: rest };
-          },
-          {}
-        );
+        state.sections = contentfulDataAdapter(action.payload!);
         state.loading = 'false';
       })
       .addCase(fetchData.rejected, (state) => {
