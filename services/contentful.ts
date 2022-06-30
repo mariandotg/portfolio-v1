@@ -1,3 +1,5 @@
+import { RawData } from '../models/data';
+
 export const getContentfulData = () => {
   const contentful = require('contentful');
   const client = contentful.createClient({
@@ -9,6 +11,6 @@ export const getContentfulData = () => {
       content_type: 'section',
       include: 1,
     })
-    .then((response: any) => response.items)
+    .then((response: RawData) => response.items)
     .catch((error: object) => console.log(error));
 };
