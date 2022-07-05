@@ -3,6 +3,7 @@ import { Action } from 'redux';
 import { createWrapper } from 'next-redux-wrapper';
 
 import dataReducer from './store/slices/data';
+import { DataFormatted } from '../models/data';
 
 const makeStore = () =>
   configureStore({
@@ -20,5 +21,11 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action
 >;
+export type NewAppState = Omit<AppState, 'data'> & {
+  data: {
+    sections: DataFormatted;
+    loading: string;
+  };
+};
 
 export const wrapper = createWrapper<AppStore>(makeStore);
