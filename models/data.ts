@@ -15,12 +15,22 @@ interface BaseEntry {
   sys: Sys;
 }
 
-interface Card {
-  id: string;
+export interface Item {
+  label: string;
+  item: string;
+}
+
+export interface ItemEntry extends BaseEntry {
+  fields: Item;
+}
+
+export interface Card {
   subtitle?: string;
   techs?: Array<string>;
   period?: string;
   description?: string;
+  site?: string;
+  repo?: string;
 }
 
 export interface CardEntry extends BaseEntry {
@@ -29,8 +39,10 @@ export interface CardEntry extends BaseEntry {
 
 export interface Section {
   title: string;
-  cards: Array<CardEntry>;
-  id: string;
+  key: string;
+  description?: string;
+  cards?: Array<CardEntry>;
+  items?: Array<ItemEntry>;
 }
 
 export interface SectionEntry extends BaseEntry {
@@ -46,10 +58,10 @@ export interface RawData {
 }
 
 export interface DataFormatted {
-  aboutSection?: Section;
-  projectsSection?: Section;
-  educationSection?: Section;
-  jobExperienceSection?: Section;
-  skillsSection?: Section;
-  infoSection?: Section;
+  about?: Section;
+  projects?: Section;
+  education?: Section;
+  jobs?: Section;
+  skills?: Section;
+  info?: Section;
 }
