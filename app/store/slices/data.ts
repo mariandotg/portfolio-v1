@@ -3,22 +3,15 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { getContentfulData } from '../../../services/contentful';
 
-import { AppState } from '../..';
-import { DataFormatted } from '../../../models/data';
+import { NewAppState } from '../..';
 import { ActionHYDRATE, ActionWithPayload } from '../../../models/actions';
+
 import contentfulDataAdapter from '../../../adapters/contentfulDataAdapter';
 
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
   const response = await getContentfulData();
   return response;
 });
-
-type NewAppState = Omit<AppState, 'data'> & {
-  data: {
-    sections: DataFormatted;
-    loading: string;
-  };
-};
 
 export const dataSlice = createSlice({
   name: 'data',
@@ -47,7 +40,16 @@ export const dataSlice = createSlice({
   },
 });
 
-export const selectData = (state: AppState) => state.data;
+export const selectData = (state: NewAppState) => state.data;
 export const selectDataSections = (state: NewAppState) => state.data.sections;
+
+export const selectAbout = (state: NewAppState) => state.data.sections.about;
+export const selectInfo = (state: NewAppState) => state.data.sections.info;
+export const selectSkills = (state: NewAppState) => state.data.sections.skills;
+export const selectJobs = (state: NewAppState) => state.data.sections.jobs;
+export const selectEducation = (state: NewAppState) =>
+  state.data.sections.education;
+export const selectProjects = (state: NewAppState) =>
+  state.data.sections.projects;
 
 export default dataSlice.reducer;
