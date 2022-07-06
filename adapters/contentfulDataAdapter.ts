@@ -28,7 +28,21 @@ const contentfulDataAdapter = (data: Array<SectionEntry>) => {
             []
           )
         : null;
-      const rest = { ...section.fields, cards, items, id: section.sys.id };
+
+      const restBase = { ...section.fields, id: section.sys.id };
+
+      const rest = cards
+        ? {
+            ...restBase,
+            cards,
+          }
+        : items
+        ? {
+            ...restBase,
+            items,
+          }
+        : restBase;
+
       return { ...acc, [section.fields.key]: rest };
     },
     {}
