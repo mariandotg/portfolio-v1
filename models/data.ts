@@ -18,6 +18,7 @@ interface BaseEntry {
 export interface Item {
   label: string;
   item: string;
+  id?: string;
 }
 
 export interface ItemEntry extends BaseEntry {
@@ -31,6 +32,7 @@ export interface Card {
   description?: string;
   site?: string;
   repo?: string;
+  id?: string;
 }
 
 export interface CardEntry extends BaseEntry {
@@ -43,6 +45,7 @@ export interface Section {
   description?: string;
   cards?: Array<CardEntry>;
   items?: Array<ItemEntry>;
+  id?: string;
 }
 
 export interface SectionEntry extends BaseEntry {
