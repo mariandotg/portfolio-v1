@@ -1,30 +1,32 @@
+import { useSelector } from 'react-redux';
+import { selectJobs } from '../../app/store/slices/data';
+import { Card } from '../../models/data';
+
 const JobExperience = () => {
+  const data = useSelector(selectJobs);
+  const { title, cards } = data!;
+  console.log(data);
   return (
     <section className='flex flex-col gap-4'>
       <h2 className='font-bold text-section-title text-light-accent'>
-        Job Experience
+        {title}
       </h2>
       <div className='flex flex-col gap-4'>
-        <div className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'>
-          <div>
-            <h3 className='font-bold text-section-subtitle text-light-accent'>
-              Job company
-            </h3>
-            <h3 className='font-bold text-section-subtitle'>Job title</h3>
+        {cards!.map((job: Card) => (
+          <div
+            key={job.id}
+            className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'
+          >
+            <div>
+              <h3 className='font-bold text-section-subtitle text-light-accent'>
+                {job.subtitle}
+              </h3>
+              <h3 className='font-bold text-section-subtitle'>Job title</h3>
+            </div>
+            <p className='text-disabled'>{job.period}</p>
+            <p>{job.description}</p>
           </div>
-          <p className='text-disabled'>Period</p>
-          <p>Description</p>
-        </div>
-        <div className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'>
-          <div>
-            <h3 className='font-bold text-section-subtitle text-light-accent'>
-              Job company
-            </h3>
-            <h3 className='font-bold text-section-subtitle'>Job title</h3>
-          </div>
-          <p className='text-disabled'>Period</p>
-          <p>Description</p>
-        </div>
+        ))}
       </div>
     </section>
   );
