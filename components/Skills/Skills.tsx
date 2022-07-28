@@ -7,7 +7,7 @@ const Skills = () => {
   const { title, cards } = data!;
   return (
     <section className='flex flex-col gap-4'>
-      <h2 className='font-bold text-section-title text-light-accent'>
+      <h2 className='font-bold text-section-title text-light-primary'>
         {title}
       </h2>
       <div className='grid grid-cols-2 gap-4'>
@@ -16,7 +16,7 @@ const Skills = () => {
             key={s.id}
             className='flex flex-col gap-2 p-4 aspect-square bg-light-card-bg rounded-base'
           >
-            <h3 className='font-bold text-section-subtitle text-light-accent'>
+            <h3 className='font-bold text-section-subtitle text-light-primary'>
               {s.subtitle}
             </h3>
             <ul className='ml-4 list-disc'>

@@ -15,7 +15,7 @@ const About = () => {
       <div className='p-4 bg-light-card-bg rounded-base flex flex-col gap-2'>
         <h1 className='font-bold text-section-subtitle'>
           <span>{titleFormatted[0]}</span>
-          <span className='text-light-accent'>{titleFormatted[1]}</span>
+          <span className='text-light-primary'>{titleFormatted[1]}</span>
         </h1>
         {descriptionFormatted.map((p, index) => (
           <p key={index}>{p}</p>

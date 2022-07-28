@@ -9,8 +9,8 @@ interface props {
 
 const Button = ({ children, variant, url, icon }: props) => {
   const variants = {
-    primary: 'bg-light-accent border-transparent text-white',
-    secondary: 'bg-transparent border-light-accent text-light-accent',
+    primary: 'bg-light-primary border-transparent text-white',
+    secondary: 'bg-transparent border-light-primary text-light-primary',
   };
 
   const style = `${variants[variant]} ${

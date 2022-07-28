@@ -3,7 +3,7 @@ import Button from '../Buttons/Button';
 const FeaturedProjects = () => {
   return (
     <section className='flex flex-col gap-4'>
-      <h2 className='font-bold text-section-title text-light-accent'>
+      <h2 className='font-bold text-section-title text-light-primary'>
         Featured Projects
       </h2>
       <div className='flex flex-col gap-4'>
@@ -15,7 +15,7 @@ const FeaturedProjects = () => {
           />
           <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
             <div className='flex flex-col gap-2'>
-              <h3 className='font-bold text-section-subtitle text-light-accent'>
+              <h3 className='font-bold text-section-subtitle text-light-primary'>
                 Project title
               </h3>
               <p className='text-disabled'>Period</p>
@@ -35,7 +35,7 @@ const FeaturedProjects = () => {
           />
           <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
             <div className='flex flex-col gap-2'>
-              <h3 className='font-bold text-section-subtitle text-light-accent'>
+              <h3 className='font-bold text-section-subtitle text-light-primary'>
                 Project title
               </h3>
               <p className='text-disabled'>Period</p>
