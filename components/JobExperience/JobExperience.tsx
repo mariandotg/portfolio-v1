@@ -5,12 +5,10 @@ import { Card } from '../../models/data';
 const JobExperience = () => {
   const data = useSelector(selectJobs);
   const { title, cards } = data!;
-  console.log(data);
+
   return (
     <section className='flex flex-col gap-4'>
-      <h2 className='font-bold text-section-title text-light-primary'>
-        {title}
-      </h2>
+      <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
       <div className='flex flex-col gap-4'>
         {cards!.map((job: Card) => (
           <div
@@ -18,12 +16,12 @@ const JobExperience = () => {
             className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'
           >
             <div>
-              <h3 className='font-bold text-section-subtitle text-light-primary'>
-                {job.subtitle}
+              <h3 className='font-bold text-light-secondary'>{job.subtitle}</h3>
+              <h3 className='text-xl font-bold text-light-primary'>
+                Job title
               </h3>
-              <h3 className='font-bold text-section-subtitle'>Job title</h3>
             </div>
-            <p className='text-disabled'>{job.period}</p>
+            <p className='text-light-secondary'>{job.period}</p>
             <p>{job.description}</p>
           </div>
         ))}
