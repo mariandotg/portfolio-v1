@@ -5,18 +5,17 @@ import { Card } from '../../models/data';
 const Skills = () => {
   const data = useSelector(selectSkills);
   const { title, cards } = data!;
+
   return (
     <section className='flex flex-col gap-4'>
-      <h2 className='font-bold text-section-title text-light-primary'>
-        {title}
-      </h2>
-      <div className='grid grid-cols-2 gap-4'>
+      <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
+      <div className='flex flex-col gap-4'>
         {cards!.map((s: Card) => (
           <div
             key={s.id}
-            className='flex flex-col gap-2 p-4 aspect-square bg-light-card-bg rounded-base'
+            className='flex flex-col gap-1 p-4 bg-light-card-bg rounded-base'
           >
-            <h3 className='font-bold text-section-subtitle text-light-primary'>
+            <h3 className='text-lg font-bold text-light-primary'>
               {s.subtitle}
             </h3>
             <ul className='ml-4 list-disc'>
