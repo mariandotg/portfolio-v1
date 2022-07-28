@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectAbout } from '../../app/store/slices/data';
 import splitString from '../../utils/splitString';
+import Button from '../Buttons/Button';
 
 const About = () => {
   const data = useSelector(selectAbout);
@@ -10,17 +11,19 @@ const About = () => {
   const descriptionFormatted = splitString(description!);
 
   return (
-    <section className='flex flex-col gap-4'>
+    <section className='flex flex-col items-end gap-4'>
       <img className='rounded-base' src='./me.png' alt='Photo of me' />
-      <div className='p-4 bg-light-card-bg rounded-base flex flex-col gap-2'>
-        <h1 className='font-bold text-section-subtitle'>
-          <span>{titleFormatted[0]}</span>
-          <span className='text-light-primary'>{titleFormatted[1]}</span>
-        </h1>
+      <h1 className='self-start text-xl font-bold'>
+        <span className='block'>{titleFormatted[0]}</span>
+        <span className='block'>{titleFormatted[1]}</span>
+        <span className='block text-light-primary'>{titleFormatted[2]}</span>
+      </h1>
+      <div className='flex flex-col gap-2'>
         {descriptionFormatted.map((p, index) => (
           <p key={index}>{p}</p>
         ))}
       </div>
+      <Button variant='primary'>Download CV</Button>
     </section>
   );
 };
