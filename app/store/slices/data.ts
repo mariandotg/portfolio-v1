@@ -46,10 +46,11 @@ export const selectDataSections = (state: NewAppState) => state.data.sections;
 export const selectAbout = (state: NewAppState) => state.data.sections.about;
 export const selectInfo = (state: NewAppState) => state.data.sections.info;
 export const selectSkills = (state: NewAppState) => state.data.sections.skills;
-export const selectJobs = (state: NewAppState) => state.data.sections.jobs;
+export const selectJobs = (state: NewAppState) =>
+  state.data.sections.jobExperience;
 export const selectEducation = (state: NewAppState) =>
   state.data.sections.education;
 export const selectProjects = (state: NewAppState) =>
-  state.data.sections.projects;
+  state.data.sections.featuredProjects;
 
 export default dataSlice.reducer;

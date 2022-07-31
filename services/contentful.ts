@@ -9,6 +9,7 @@ export const getContentfulData = () => {
   return client
     .getEntries({
       content_type: 'section',
+      'fields.language': 'EN',
       include: 1,
     })
     .then((response: RawData) => response.items)
