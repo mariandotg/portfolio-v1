@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
-import { selectAbout } from '../../app/store/slices/data';
+import { selectDataSections } from '../../app/store/slices/data';
 import splitString from '../../utils/splitString';
 import Button from '../Buttons/Button';
 
 const About = () => {
-  const data = useSelector(selectAbout);
-  const { title, description } = data!;
+  const data = useSelector(selectDataSections);
+  const { title, description } = data.about;
 
-  const titleFormatted = splitString(title!);
-  const descriptionFormatted = splitString(description!);
+  const titleFormatted = splitString(title);
+  const descriptionFormatted = splitString(description);
 
   return (
     <section className='flex flex-col items-end gap-4'>
