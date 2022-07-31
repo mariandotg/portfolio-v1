@@ -1,19 +1,21 @@
 import { useSelector } from 'react-redux';
-import { selectInfo } from '../../app/store/slices/data';
+import { selectDataSections } from '../../app/store/slices/data';
 import { Item } from '../../models/data';
 
 const Info = () => {
-  const data = useSelector(selectInfo);
-  const { title, items } = data!;
+  const data = useSelector(selectDataSections);
+  const { title, cards } = data.info;
 
   return (
     <section className='flex flex-col gap-4'>
       <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
       <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-base'>
-        {items!.map((i: Item) => (
-          <div key={i.id} className='flex flex-col gap-1'>
-            <h3 className='text-lg font-bold text-light-primary'>{i.label}</h3>
-            <p>{i.item}</p>
+        {cards.map((item: Item) => (
+          <div key={item.id} className='flex flex-col gap-1'>
+            <h3 className='text-lg font-bold text-light-primary'>
+              {item.label}
+            </h3>
+            <p>{item.item}</p>
           </div>
         ))}
       </div>
