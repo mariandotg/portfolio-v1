@@ -1,50 +1,41 @@
+import { useSelector } from 'react-redux';
+import { selectDataSections } from '../../app/store/slices/data';
+import { SocialMedia } from '../../models/data';
+
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
+interface Icons {
+  [index: string]: any;
+}
+
 const Footer = () => {
+  const data = useSelector(selectDataSections);
+  const { title, socialMedia } = data.footer;
+
+  const icons: Icons = {
+    LinkedInIcon: <LinkedInIcon fontSize='large' />,
+    GitHubIcon: <GitHubIcon fontSize='large' />,
+    TwitterIcon: <TwitterIcon fontSize='large' />,
+    InstagramIcon: <InstagramIcon fontSize='large' />,
+    FacebookIcon: <FacebookIcon fontSize='large' />,
+  };
+
   return (
-    <footer className='p-8 flex flex-col items-center gap-4'>
-      <div className='w-full flex justify-evenly'>
-        <a
-          href='https://linkedin.com/marianoguillaume'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <LinkedInIcon fontSize='large' />
-        </a>
-        <a
-          href='https://github.com/mariandotg'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <GitHubIcon fontSize='large' />
-        </a>
-        <a
-          href='https://twitter.com/mariandotg'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <TwitterIcon fontSize='large' />
-        </a>
-        <a
-          href='https://instagram.com/marian_guilla'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <InstagramIcon fontSize='large' />
-        </a>
-        <a
-          href='https://facebook.com/mariandotg'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <FacebookIcon fontSize='large' />
-        </a>
+    <footer className='flex flex-col items-center gap-4 p-8'>
+      <div className='flex w-full justify-evenly'>
+        {socialMedia.map((e: SocialMedia, i: number) => {
+          return (
+            <a key={e.id} href={e.url} target='_blank' rel='noreferrer'>
+              {icons[e.icon]}
+            </a>
+          );
+        })}
       </div>
-      <span className='w-fit'>Contact me</span>
+      <span className='w-fit'>{title}</span>
     </footer>
   );
 };
