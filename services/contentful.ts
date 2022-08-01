@@ -1,6 +1,6 @@
 import { RawData } from '../models/data';
 
-export const getContentfulData = () => {
+export const getContentfulData = (lang?: string) => {
   const contentful = require('contentful');
   const client = contentful.createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -9,7 +9,7 @@ export const getContentfulData = () => {
   return client
     .getEntries({
       content_type: 'section',
-      'fields.language': 'EN',
+      'fields.language': lang?.toLocaleUpperCase(),
       include: 1,
     })
     .then((response: RawData) => response.items)

@@ -8,10 +8,13 @@ import { ActionHYDRATE, ActionWithPayload } from '../../../models/actions';
 
 import contentfulDataAdapter from '../../../adapters/contentfulDataAdapter';
 
-export const fetchData = createAsyncThunk('data/fetchData', async () => {
-  const response = await getContentfulData();
-  return response;
-});
+export const fetchData = createAsyncThunk(
+  'data/fetchData',
+  async (lang?: string) => {
+    const response = await getContentfulData(lang);
+    return response;
+  }
+);
 
 export const dataSlice = createSlice({
   name: 'data',

@@ -33,9 +33,9 @@ const Home: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async (ctx) => {
+  wrapper.getServerSideProps((store) => async ({ locale }) => {
     try {
-      await store.dispatch(fetchData()).unwrap();
+      await store.dispatch(fetchData(locale)).unwrap();
     } catch (rejectedValueOrSerializedError) {
       console.log('error', rejectedValueOrSerializedError);
     }
