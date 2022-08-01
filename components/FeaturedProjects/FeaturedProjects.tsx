@@ -1,34 +1,38 @@
 import { useSelector } from 'react-redux';
-import { selectProjects } from '../../app/store/slices/data';
-import { Card } from '../../models/data';
+import { selectDataSections } from '../../app/store/slices/data';
+import { ProjectCard } from '../../models/data';
 import Button from '../Buttons/Button';
 
 const FeaturedProjects = () => {
-  const data = useSelector(selectProjects);
-  const { title, cards } = data!;
+  const data = useSelector(selectDataSections);
+  const { title, cards } = data.featuredProjects;
 
   return (
     <section className='flex flex-col gap-4'>
       <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
       <div className='flex flex-col gap-4'>
-        {cards!.map((project: Card) => (
-          <div key={project.id}>
+        {cards!.map((card: ProjectCard) => (
+          <div key={card.id}>
             <img
               className='object-cover object-left-top w-full h-52 rounded-tl-base rounded-tr-base'
-              src='./me.png'
+              src={card.image}
               alt='project'
             />
             <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
               <div className='flex flex-col gap-2'>
                 <h3 className='text-xl font-bold text-light-primary'>
-                  {project.subtitle}
+                  {card.name}
                 </h3>
-                <p className='text-light-secondary'>{project.period}</p>
-                <p>{project.description}</p>
+                <p className='text-light-secondary'>{card?.year}</p>
+                <p>{card.description}</p>
               </div>
               <div className='flex self-end gap-4'>
-                <Button variant='secondary'>Button 2</Button>
-                <Button variant='primary'>Button 1</Button>
+                <Button variant='secondary' url={card?.repository}>
+                  View repo
+                </Button>
+                <Button variant='primary' url={card?.site}>
+                  View site
+                </Button>
               </div>
             </div>
           </div>

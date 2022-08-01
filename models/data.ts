@@ -157,13 +157,13 @@ export interface JobExperience {
 }
 
 export interface ProjectCard {
-  imageUrl: string;
+  image: string;
   name: string;
   year?: string;
   description: string;
-  id: string;
   site: string;
   repository: string;
+  id: string;
 }
 
 export interface FeaturedProjects {
