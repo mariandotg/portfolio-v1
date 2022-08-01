@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     <>
       <Header />
       <div className='h-[92px]'></div>
-      <div className='flex flex-col gap-16 p-8'>
+      <div className='flex flex-col gap-16 p-4'>
         <About />
         <div className='flex flex-col gap-8'>
           <Info />
