@@ -54,11 +54,19 @@ export interface ICardEntry extends IBaseEntry {
   fields: ICard;
 }
 
+export interface IButton {
+  cta?: string;
+  children?: ReactNode;
+  variant: 'primary' | 'secondary';
+  url?: string;
+}
+
 export interface ISection {
   title: string;
   key: string;
   description?: string;
   cards?: Array<ICardEntry>;
+  cta?: IButton;
   language: string;
   id: string;
 }
@@ -67,7 +75,7 @@ export interface ISectionEntry extends IBaseEntry {
   fields: ISection;
 }
 
-export interface RawData {
+export interface IRawData {
   sys: object;
   total: number;
   skip: number;
@@ -89,19 +97,12 @@ export interface IHeader {
   languagesList: Array<ILanguage>;
 }
 
-export interface IButton {
-  cta?: string;
-  children?: ReactNode;
-  variant: 'primary' | 'secondary';
-  url?: string;
-}
-
 export interface IAbout {
   title: string;
   key: string;
   description: string;
   language: string;
-  principalCta: IButton;
+  cta: IButton;
   id: string;
 }
 
@@ -138,7 +139,7 @@ export interface ICourseCard {
   courseTitle: string;
   period: string;
   description?: string;
-  certificate?: string;
+  certificate?: IButton;
   id: string;
 }
 
@@ -171,8 +172,8 @@ export interface IProjectCard {
   name: string;
   year?: string;
   description: string;
-  site: string;
-  repository: string;
+  site: IButton;
+  repository: IButton;
   id: string;
 }
 
