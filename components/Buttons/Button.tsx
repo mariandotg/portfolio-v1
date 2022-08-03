@@ -1,12 +1,6 @@
-import { ReactNode } from 'react';
+import { IButton } from '../../models/data';
 
-interface props {
-  children: ReactNode;
-  variant: 'primary' | 'secondary';
-  url?: string;
-}
-
-const Button = ({ children, variant, url }: props) => {
+const Button = ({ children, variant, url }: IButton) => {
   const variants = {
     primary: 'bg-light-primary border-transparent text-white',
     secondary: 'bg-transparent border-light-primary text-light-primary',

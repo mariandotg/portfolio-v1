@@ -3,7 +3,7 @@ import { Action } from 'redux';
 import { createWrapper } from 'next-redux-wrapper';
 
 import dataReducer from './store/slices/data';
-import { DataFormatted } from '../models/data';
+import { IDataFormatted } from '../models/data';
 
 const makeStore = () =>
   configureStore({
@@ -23,7 +23,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 export type NewAppState = Omit<AppState, 'data'> & {
   data: {
-    sections: DataFormatted;
+    sections: IDataFormatted;
     loading: string;
   };
 };

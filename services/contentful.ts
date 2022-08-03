@@ -1,4 +1,4 @@
-import { RawData } from '../models/data';
+import { IRawData } from '../models/data';
 
 export const getContentfulData = (lang?: string) => {
   const contentful = require('contentful');
@@ -12,6 +12,6 @@ export const getContentfulData = (lang?: string) => {
       'fields.language': lang?.toLocaleUpperCase(),
       include: 1,
     })
-    .then((response: RawData) => response.items)
+    .then((response: IRawData) => response.items)
     .catch((error: object) => console.log(error));
 };

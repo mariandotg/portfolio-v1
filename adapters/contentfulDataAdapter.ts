@@ -1,15 +1,15 @@
 import {
-  CardEntry,
-  DataFormatted,
-  SectionEntry,
-  CardFormatted,
+  ICardEntry,
+  IDataFormatted,
+  ISectionEntry,
+  ICardFormatted,
 } from '../models/data';
 
-const contentfulDataAdapter = (data: Array<SectionEntry>) => {
-  const formattedData = data.reduce<DataFormatted>(
-    (acc: DataFormatted, section: SectionEntry) => {
-      const cards = section.fields.cards?.reduce<CardFormatted[]>(
-        (acc: CardFormatted[], card: CardEntry) => {
+const contentfulDataAdapter = (data: Array<ISectionEntry>) => {
+  const formattedData = data.reduce<IDataFormatted>(
+    (acc: IDataFormatted, section: ISectionEntry) => {
+      const cards = section.fields.cards?.reduce<ICardFormatted[]>(
+        (acc: ICardFormatted[], card: ICardEntry) => {
           const image = card.fields.image
             ? card.fields.image.fields.file.url
             : null;
@@ -41,7 +41,7 @@ const contentfulDataAdapter = (data: Array<SectionEntry>) => {
 
       return { ...acc, [section.fields.key]: rest };
     },
-    {} as DataFormatted
+    {} as IDataFormatted
   );
   return formattedData;
 };

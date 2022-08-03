@@ -1,4 +1,6 @@
-interface Sys {
+import { ReactNode } from 'react';
+
+interface ISys {
   space: object;
   id: string;
   type: string;
@@ -10,18 +12,18 @@ interface Sys {
   locale: string;
 }
 
-interface BaseEntry {
+interface IBaseEntry {
   metadata: object;
-  sys: Sys;
+  sys: ISys;
 }
 
-interface Image {
+interface IImage {
   fields: {
     file: { url: string };
   };
 }
 
-export interface BaseCard {
+export interface IBaseCard {
   label?: string;
   item?: string;
   id?: string;
@@ -40,29 +42,29 @@ export interface BaseCard {
   repository?: string;
 }
 
-export interface Card extends BaseCard {
-  image?: Image;
+export interface ICard extends IBaseCard {
+  image?: IImage;
 }
 
-export interface CardFormatted extends BaseCard {
-  image?: Image | string;
+export interface ICardFormatted extends IBaseCard {
+  image?: IImage | string;
 }
 
-export interface CardEntry extends BaseEntry {
-  fields: Card;
+export interface ICardEntry extends IBaseEntry {
+  fields: ICard;
 }
 
-export interface Section {
+export interface ISection {
   title: string;
   key: string;
   description?: string;
-  cards?: Array<CardEntry>;
+  cards?: Array<ICardEntry>;
   language: string;
   id: string;
 }
 
-export interface SectionEntry extends BaseEntry {
-  fields: Section;
+export interface ISectionEntry extends IBaseEntry {
+  fields: ISection;
 }
 
 export interface RawData {
@@ -70,60 +72,68 @@ export interface RawData {
   total: number;
   skip: number;
   limit: number;
-  items: Array<SectionEntry>;
+  items: Array<ISectionEntry>;
 }
 
-export interface Language {
+export interface ILanguage {
   displayName: string;
   slug: string;
   id: string;
 }
 
-export interface Header {
+export interface IHeader {
   title: string;
   key: string;
   language: string;
   id: string;
-  languagesList: Array<Language>;
+  languagesList: Array<ILanguage>;
 }
 
-export interface About {
+export interface IButton {
+  cta?: string;
+  children?: ReactNode;
+  variant: 'primary' | 'secondary';
+  url?: string;
+}
+
+export interface IAbout {
   title: string;
   key: string;
   description: string;
   language: string;
+  principalCta: IButton;
   id: string;
 }
 
-export interface Item {
+export interface IItem {
   label: string;
   item: string;
   id: string;
 }
 
-export interface Info {
+export interface IInfo {
   title: string;
   key: string;
-  cards: Array<Item>;
+  cards: Array<IItem>;
   language: string;
   id: string;
 }
 
-export interface SkillCard {
+export interface ISkillCard {
   subtitle: string;
   techs: string;
   id: string;
 }
 
-export interface Skills {
+export interface ISkills {
   title: string;
   key: string;
-  cards: Array<SkillCard>;
+  cards: Array<ISkillCard>;
   language: string;
   id: string;
 }
 
-export interface CourseCard {
+export interface ICourseCard {
   institution: string;
   courseTitle: string;
   period: string;
@@ -132,15 +142,15 @@ export interface CourseCard {
   id: string;
 }
 
-export interface Education {
+export interface IEducation {
   title: string;
   key: string;
-  cards: Array<CourseCard>;
+  cards: Array<ICourseCard>;
   language: string;
   id: string;
 }
 
-export interface JobCard {
+export interface IJobCard {
   company: string;
   position: string;
   period: string;
@@ -148,15 +158,15 @@ export interface JobCard {
   id: string;
 }
 
-export interface JobExperience {
+export interface IJobExperience {
   title: string;
   key: string;
-  cards: Array<JobCard>;
+  cards: Array<IJobCard>;
   language: string;
   id: string;
 }
 
-export interface ProjectCard {
+export interface IProjectCard {
   image: string;
   name: string;
   year?: string;
@@ -166,35 +176,35 @@ export interface ProjectCard {
   id: string;
 }
 
-export interface FeaturedProjects {
+export interface IFeaturedProjects {
   title: string;
   key: string;
-  cards: Array<ProjectCard>;
+  cards: Array<IProjectCard>;
   language: string;
   id: string;
 }
 
-export interface SocialMedia {
+export interface ISocialMedia {
   url: string;
   icon: string;
   id: string;
 }
 
-export interface Footer {
+export interface IFooter {
   title: string;
   key: string;
   language: string;
   id: string;
-  socialMedia: Array<SocialMedia>;
+  socialMedia: Array<ISocialMedia>;
 }
 
-export interface DataFormatted {
-  header: Header;
-  about: About;
-  info: Info;
-  skills: Skills;
-  education: Education;
-  jobExperience: JobExperience;
-  featuredProjects: FeaturedProjects;
-  footer: Footer;
+export interface IDataFormatted {
+  header: IHeader;
+  about: IAbout;
+  info: IInfo;
+  skills: ISkills;
+  education: IEducation;
+  jobExperience: IJobExperience;
+  featuredProjects: IFeaturedProjects;
+  footer: IFooter;
 }

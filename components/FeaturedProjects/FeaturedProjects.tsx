@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectDataSections } from '../../app/store/slices/data';
-import { ProjectCard } from '../../models/data';
+import { IProjectCard } from '../../models/data';
 import Button from '../Buttons/Button';
 
 const FeaturedProjects = () => {
@@ -11,7 +11,7 @@ const FeaturedProjects = () => {
     <section className='flex flex-col gap-4'>
       <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
       <div className='flex flex-col gap-4'>
-        {cards!.map((card: ProjectCard) => (
+        {cards!.map((card: IProjectCard) => (
           <div key={card.id}>
             <img
               className='object-cover object-left-top w-full h-52 rounded-tl-base rounded-tr-base'

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectDataSections } from '../../app/store/slices/data';
-import { SocialMedia } from '../../models/data';
+import { ISocialMedia } from '../../models/data';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className='flex flex-col items-center gap-4 p-8'>
       <div className='flex w-full justify-evenly'>
-        {socialMedia.map((e: SocialMedia, i: number) => {
+        {socialMedia.map((e: ISocialMedia, i: number) => {
           return (
             <a key={e.id} href={e.url} target='_blank' rel='noreferrer'>
               {icons[e.icon]}

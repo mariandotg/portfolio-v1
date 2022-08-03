@@ -1,15 +1,15 @@
 import { Action } from '@reduxjs/toolkit';
-import { DataFormatted, SectionEntry } from './data';
+import { IDataFormatted, ISectionEntry } from './data';
 
 export interface ActionWithPayload extends Action {
-  payload?: Array<SectionEntry>;
+  payload?: Array<ISectionEntry>;
 }
 
 export interface ActionHYDRATE extends Action {
   type: string;
   payload?: {
     data: {
-      sections: DataFormatted;
+      sections: IDataFormatted;
       loading: string;
     };
   };

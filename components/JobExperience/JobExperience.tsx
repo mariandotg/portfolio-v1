@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectDataSections } from '../../app/store/slices/data';
-import { JobCard } from '../../models/data';
+import { IJobCard } from '../../models/data';
 
 const JobExperience = () => {
   const data = useSelector(selectDataSections);
@@ -10,7 +10,7 @@ const JobExperience = () => {
     <section className='flex flex-col gap-4'>
       <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
       <div className='flex flex-col gap-4'>
-        {cards.map((card: JobCard) => (
+        {cards.map((card: IJobCard) => (
           <div
             key={card.id}
             className='flex flex-col gap-2 p-4 bg-light-card-bg rounded-base'
