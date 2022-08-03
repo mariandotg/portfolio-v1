@@ -5,7 +5,7 @@ import Button from '../Buttons/Button';
 
 const About = () => {
   const data = useSelector(selectDataSections);
-  const { title, description } = data.about;
+  const { title, cta, description } = data.about;
 
   const titleFormatted = splitString(title);
   const descriptionFormatted = splitString(description);
@@ -23,7 +23,7 @@ const About = () => {
           <p key={index}>{p}</p>
         ))}
       </div>
-      <Button variant='primary'>Download CV</Button>
+      <Button variant={cta.variant}>{cta.cta}</Button>
     </section>
   );
 };

@@ -27,11 +27,14 @@ const FeaturedProjects = () => {
                 <p>{card.description}</p>
               </div>
               <div className='flex self-end gap-4'>
-                <Button variant='secondary' url={card?.repository}>
-                  View repo
+                <Button
+                  variant={card.repository.variant}
+                  url={card.repository.url}
+                >
+                  {card.repository.cta}
                 </Button>
-                <Button variant='primary' url={card?.site}>
-                  View site
+                <Button variant={card.site.variant} url={card.site.url}>
+                  {card.site.cta}
                 </Button>
               </div>
             </div>
