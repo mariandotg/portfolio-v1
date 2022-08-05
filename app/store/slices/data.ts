@@ -10,9 +10,9 @@ import contentfulDataAdapter from '../../../adapters/contentfulDataAdapter';
 
 export const fetchData = createAsyncThunk(
   'data/fetchData',
-  async (lang?: string) => {
+  async (lang: string) => {
     const response = await getContentfulData(lang);
-    return response;
+    return { response, lang };
   }
 );
 
@@ -21,6 +21,7 @@ export const dataSlice = createSlice({
   initialState: {
     sections: {},
     loading: 'false',
+    language: '',
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -29,8 +30,9 @@ export const dataSlice = createSlice({
         state.loading = 'true';
       })
       .addCase(fetchData.fulfilled, (state, action: ActionWithPayload) => {
-        state.sections = contentfulDataAdapter(action.payload!);
+        state.sections = contentfulDataAdapter(action.payload!.response);
         state.loading = 'false';
+        state.language = action.payload!.lang;
       })
       .addCase(fetchData.rejected, (state) => {
         state.loading = 'false';
@@ -38,6 +40,7 @@ export const dataSlice = createSlice({
       .addCase(HYDRATE, (state, action: ActionHYDRATE) => {
         if (!action.payload!.data.sections) return state;
         state.sections = action.payload!.data.sections;
+        state.language = action.payload!.data.language;
         state.loading = 'false';
       });
   },

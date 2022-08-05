@@ -2,7 +2,10 @@ import { Action } from '@reduxjs/toolkit';
 import { IDataFormatted, ISectionEntry } from './data';
 
 export interface ActionWithPayload extends Action {
-  payload?: Array<ISectionEntry>;
+  payload?: {
+    response: Array<ISectionEntry>;
+    lang: string;
+  };
 }
 
 export interface ActionHYDRATE extends Action {
@@ -11,6 +14,7 @@ export interface ActionHYDRATE extends Action {
     data: {
       sections: IDataFormatted;
       loading: string;
+      language: string;
     };
   };
 }

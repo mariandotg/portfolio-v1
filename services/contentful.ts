@@ -9,7 +9,7 @@ export const getContentfulData = (lang?: string) => {
   return client
     .getEntries({
       content_type: 'section',
-      'fields.language': lang?.toLocaleUpperCase(),
+      'fields.language': lang,
       include: 1,
     })
     .then((response: IRawData) => response.items)

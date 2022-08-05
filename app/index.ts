@@ -25,6 +25,7 @@ export type NewAppState = Omit<AppState, 'data'> & {
   data: {
     sections: IDataFormatted;
     loading: string;
+    language: string;
   };
 };
 
