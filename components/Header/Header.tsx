@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='sticky top-0 flex w-full p-4 bg-light-bg'>
+      <header className='sticky top-0 flex w-full p-4 bg-light-bg dark:bg-dark-bg'>
         <div className='relative w-fit'>
           <button
             className='flex items-center gap-2 py-4'
@@ -43,7 +43,7 @@ const Header = () => {
             {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
           </button>
           {isOpen && (
-            <ul className='absolute w-full px-4 py-2 text-right bg-light-card-bg rounded-base'>
+            <ul className='absolute w-full px-4 py-2 text-right bg-light-card-bg dark:bg-dark-card-bg rounded-base'>
               {languagesList.map((l: ILanguage) => {
                 return (
                   <li
@@ -51,7 +51,7 @@ const Header = () => {
                     value={l.slug}
                     className={`py-2 ${
                       l.slug === data.language
-                        ? 'before:content-["●"] before:mr-2 text-light-primary'
+                        ? 'before:content-["●"] before:mr-2 text-light-primary dark:text-dark-primary'
                         : ''
                     }`}
                     onClick={() => changeLanguage(l.slug)}

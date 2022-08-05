@@ -8,7 +8,7 @@ const ThemeButton = () => {
   return (
     <>
       <button
-        className='p-4 ml-auto rounded-base bg-light-primary text-light-card-bg '
+        className='p-4 ml-auto rounded-base bg-light-primary dark:bg-dark-primary text-light-card-bg dark:text-dark-card-bg'
         onClick={toggleTheme}
       >
         {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}

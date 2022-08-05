@@ -9,7 +9,9 @@ const FeaturedProjects = () => {
 
   return (
     <section className='flex flex-col gap-4'>
-      <h2 className='text-xl font-bold text-light-primary'>{title}</h2>
+      <h2 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
+        {title}
+      </h2>
       <div className='flex flex-col gap-4'>
         {cards!.map((card: IProjectCard) => (
           <div key={card.id}>
@@ -18,12 +20,14 @@ const FeaturedProjects = () => {
               src={card.image}
               alt='project'
             />
-            <div className='flex flex-col gap-4 p-4 bg-light-card-bg rounded-bl-base rounded-br-base'>
+            <div className='flex flex-col gap-4 p-4 bg-light-card-bg dark:bg-dark-card-bg rounded-bl-base rounded-br-base'>
               <div className='flex flex-col gap-2'>
-                <h3 className='text-xl font-bold text-light-primary'>
+                <h3 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
                   {card.name}
                 </h3>
-                <p className='text-light-secondary'>{card?.year}</p>
+                <p className='text-light-secondary dark:text-dark-secondary'>
+                  {card?.year}
+                </p>
                 <p>{card.description}</p>
               </div>
               <div className='flex self-end gap-4'>

@@ -10,6 +10,6 @@
   }
   html,
   body {
-    @apply p-0 m-0 text-base bg-light-bg font-body;
+    @apply p-0 m-0 text-base bg-light-bg font-body text-light-text dark:bg-dark-bg dark:text-dark-text;
   }
 }

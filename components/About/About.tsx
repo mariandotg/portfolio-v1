@@ -16,7 +16,7 @@ const About = () => {
       <h1 className='self-start text-xl font-bold'>
         <span className='block'>{titleFormatted[0]}</span>
         <span className='block'>{titleFormatted[1]}</span>
-        <span className='block text-light-primary'>{titleFormatted[2]}</span>
+        <span className='block text-light-primary dark:text-dark-primary'>{titleFormatted[2]}</span>
       </h1>
       <div className='flex flex-col gap-2'>
         {descriptionFormatted.map((p, index) => (
