@@ -8,6 +8,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 
 import { selectData } from '../../app/store/slices/data';
 import { ILanguage } from '../../models/data';
+import ThemeButton from '../Buttons/ThemeButton';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,10 +32,10 @@ const Header = () => {
 
   return (
     <>
-      <header className='sticky top-0 w-full p-4 bg-light-bg'>
-        <div className='w-fit relative'>
+      <header className='sticky top-0 flex w-full p-4 bg-light-bg'>
+        <div className='relative w-fit'>
           <button
-            className='flex items-center py-4 gap-2'
+            className='flex items-center gap-2 py-4'
             onClick={handleLangChange}
           >
             <LanguageIcon />
@@ -42,7 +43,7 @@ const Header = () => {
             {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
           </button>
           {isOpen && (
-            <ul className='absolute bg-light-card-bg rounded-base w-full px-4 py-2 text-right'>
+            <ul className='absolute w-full px-4 py-2 text-right bg-light-card-bg rounded-base'>
               {languagesList.map((l: ILanguage) => {
                 return (
                   <li
@@ -62,6 +63,7 @@ const Header = () => {
             </ul>
           )}
         </div>
+        <ThemeButton />
       </header>
     </>
   );
