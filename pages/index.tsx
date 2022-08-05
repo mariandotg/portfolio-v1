@@ -16,7 +16,6 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <div className='h-[92px]'></div>
       <div className='flex flex-col gap-16 p-4'>
         <About />
         <div className='flex flex-col gap-8'>
@@ -35,7 +34,7 @@ const Home: NextPage = () => {
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
     try {
-      await store.dispatch(fetchData(locale)).unwrap();
+      await store.dispatch(fetchData(locale!)).unwrap();
     } catch (rejectedValueOrSerializedError) {
       console.log('error', rejectedValueOrSerializedError);
     }
