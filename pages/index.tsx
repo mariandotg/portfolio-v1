@@ -1,5 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next';
 
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+
 import Header from '../components/Header/Header';
 import About from '../components/About/About';
 import Info from '../components/Info/Info';
@@ -8,11 +10,15 @@ import Education from '../components/Education/Education';
 import JobExperience from '../components/JobExperience/JobExperience';
 import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 import Footer from '../components/Footer/Footer';
+import IconButton from '../components/Buttons/IconButton';
 
 import { fetchData } from '../app/store/slices/data';
 import { wrapper } from '../app';
+import useScroll from '../hooks/useScroll';
 
 const Home: NextPage = () => {
+  const { visible, scrollToTop } = useScroll();
+
   return (
     <>
       <Header />
@@ -26,6 +32,12 @@ const Home: NextPage = () => {
         </div>
         <FeaturedProjects />
       </div>
+      <IconButton
+        clickFunction={scrollToTop}
+        style={visible ? 'inline' : 'hidden'}
+      >
+        <KeyboardDoubleArrowUpIcon />
+      </IconButton>
       <Footer />
     </>
   );
