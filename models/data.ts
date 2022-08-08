@@ -197,6 +197,22 @@ export interface ISocialMedia {
   id: string;
 }
 
+export interface IContactField {
+  label: string;
+  placeholder: string;
+  type: string;
+  id: string;
+}
+
+export interface IContact {
+  title: string;
+  key: string;
+  cards: Array<IContactField>;
+  language: string;
+  cta: IButton;
+  id: string;
+}
+
 export interface IFooter {
   title: string;
   key: string;
@@ -213,5 +229,6 @@ export interface IDataFormatted {
   education: IEducation;
   jobExperience: IJobExperience;
   featuredProjects: IFeaturedProjects;
+  contact: IContact;
   footer: IFooter;
 }

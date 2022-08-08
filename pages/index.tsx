@@ -9,6 +9,7 @@ import Skills from '../components/Skills/Skills';
 import Education from '../components/Education/Education';
 import JobExperience from '../components/JobExperience/JobExperience';
 import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
+import Contact from '../components/Contact/Contact';
 import Footer from '../components/Footer/Footer';
 import IconButton from '../components/Buttons/IconButton';
 
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
           <JobExperience />
         </div>
         <FeaturedProjects />
+        <Contact />
       </div>
       <IconButton
         clickFunction={scrollToTop}
