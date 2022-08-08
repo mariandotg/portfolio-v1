@@ -61,6 +61,12 @@ export interface IButton {
   url?: string;
 }
 
+export interface IIconButton {
+  children: ReactNode;
+  clickFunction: () => void;
+  style: string;
+}
+
 export interface ISection {
   title: string;
   key: string;
