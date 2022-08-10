@@ -67,12 +67,21 @@ export interface IIconButton {
   style: string;
 }
 
+export interface IUiFeedback {
+  required: string;
+  error: {
+    minCant: string;
+    validEmail: string;
+  };
+}
+
 export interface ISection {
   title: string;
   key: string;
   description?: string;
   cards?: Array<ICardEntry>;
   cta?: IButton;
+  feedback?: IUiFeedback;
   language: string;
   id: string;
 }
@@ -211,6 +220,7 @@ export interface IContact {
   cards: Array<IContactField>;
   language: string;
   cta: IButton;
+  feedback: IUiFeedback;
   id: string;
 }
 

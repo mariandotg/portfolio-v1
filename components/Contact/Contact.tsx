@@ -16,7 +16,7 @@ interface IInitialValues {
 
 const Contact = () => {
   const data = useSelector(selectData);
-  const { title, cards, cta } = data.sections.contact;
+  const { title, cards, cta, feedback } = data.sections.contact;
 
   const initialValues: IInitialValues = {
     subject: '',
@@ -24,14 +24,14 @@ const Contact = () => {
     message: '',
   };
 
-  const required = '* Campo obligatorio';
-
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
-      .min(3, 'La cantidad mínima de caracteres es 4')
-      .required(required),
-    from: Yup.string().email('Debe ser un email válido').required(required),
-    message: Yup.string().required(required),
+      .min(3, feedback.error.minCant)
+      .required(feedback.required),
+    from: Yup.string()
+      .email(feedback.error.validEmail)
+      .required(feedback.required),
+    message: Yup.string().required(feedback.required),
   });
 
   const onSubmit = () => {
