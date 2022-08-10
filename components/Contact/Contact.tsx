@@ -26,7 +26,7 @@ const Contact = () => {
 
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
-      .min(3, feedback.error.minCant)
+      .min(4, feedback.error.minCant)
       .required(feedback.required),
     from: Yup.string()
       .email(feedback.error.validEmail)
@@ -52,7 +52,15 @@ const Contact = () => {
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
-  const { handleSubmit, handleChange, values, resetForm } = formik;
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    resetForm,
+    errors,
+    touched,
+  } = formik;
 
   return (
     <section className='flex flex-col items-end gap-4'>
@@ -70,15 +78,21 @@ const Contact = () => {
           >
             <label className='font-bold '>{e.label}</label>
             {e.type === 'textarea' ? (
-              <div className='h-[192px] px-4 py-3 rounded-[8px] focus:outline-none border border-light-secondary dark:border-dark-secondary focus-within:border-light-primary dark:focus-within:border-dark-primary'>
-                <textarea
-                  name={e.name}
-                  placeholder={e.placeholder}
-                  value={values[e.name]}
-                  onChange={handleChange}
-                  className='w-full h-full bg-transparent resize-none focus:outline-none text-light-text dark:text-dark-text'
-                ></textarea>
-              </div>
+              <>
+                <div className='h-[192px] px-4 py-3 rounded-[8px] focus:outline-none border border-light-secondary dark:border-dark-secondary focus-within:border-light-primary dark:focus-within:border-dark-primary'>
+                  <textarea
+                    name={e.name}
+                    placeholder={e.placeholder}
+                    value={values[e.name]}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className='w-full h-full bg-transparent resize-none focus:outline-none text-light-text dark:text-dark-text'
+                  ></textarea>
+                </div>
+                {errors[e.name] && touched[e.name] && (
+                  <span className='text-red-500'>{errors[e.name]}</span>
+                )}
+              </>
             ) : (
               <>
                 <input
@@ -87,8 +101,12 @@ const Contact = () => {
                   placeholder={e.placeholder}
                   value={values[e.name]}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   className='w-full px-4 py-3 rounded-[8px] bg-transparent border focus:outline-none border-light-secondary dark:border-dark-secondary focus:border-light-primary dark:focus:border-dark-primary text-light-text dark:text-dark-text'
                 ></input>
+                {errors[e.name] && touched[e.name] && (
+                  <span className='text-red-500'>{errors[e.name]}</span>
+                )}
               </>
             )}
           </div>
