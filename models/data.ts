@@ -200,6 +200,7 @@ export interface ISocialMedia {
 export interface IContactField {
   label: string;
   placeholder: string;
+  name: string;
   type: string;
   id: string;
 }
