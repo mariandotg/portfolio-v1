@@ -59,6 +59,7 @@ export interface IButton {
   children?: ReactNode;
   variant: 'primary' | 'secondary';
   url?: string;
+  disabled?: boolean;
 }
 
 export interface IIconButton {
