@@ -11,7 +11,7 @@ import JobExperience from '../components/JobExperience/JobExperience';
 import FeaturedProjects from '../components/FeaturedProjects/FeaturedProjects';
 import Contact from '../components/Contact/Contact';
 import Footer from '../components/Footer/Footer';
-import IconButton from '../components/Buttons/IconButton';
+import Button from '../components/Buttons/Button';
 
 import { fetchData } from '../app/store/slices/data';
 import { wrapper } from '../app';
@@ -34,12 +34,14 @@ const Home: NextPage = () => {
         <FeaturedProjects />
         <Contact />
       </div>
-      <IconButton
-        clickFunction={scrollToTop}
-        style={visible ? 'inline' : 'hidden'}
+      <Button
+        variant='primary'
+        onClick={scrollToTop}
+        className={`${visible ? 'inline' : 'hidden'} fixed bottom-4 right-4`}
+        icon
       >
         <KeyboardDoubleArrowUpIcon />
-      </IconButton>
+      </Button>
       <Footer />
     </>
   );
