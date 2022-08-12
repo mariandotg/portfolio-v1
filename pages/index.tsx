@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 
@@ -47,16 +47,18 @@ const Home: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async ({ locale }) => {
-    try {
-      await store.dispatch(fetchData(locale!)).unwrap();
-    } catch (rejectedValueOrSerializedError) {
-      console.log('error', rejectedValueOrSerializedError);
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  (store) =>
+    async ({ locale }) => {
+      try {
+        await store.dispatch(fetchData(locale!)).unwrap();
+      } catch (rejectedValueOrSerializedError) {
+        console.log('error', rejectedValueOrSerializedError);
+      }
+      return {
+        props: {},
+      };
     }
-    return {
-      props: {},
-    };
-  });
+);
 
 export default Home;
