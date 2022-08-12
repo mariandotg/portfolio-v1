@@ -5,11 +5,15 @@ import { useRouter } from 'next/router';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import LanguageIcon from '@mui/icons-material/Language';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 import { selectData } from '../../app/store/slices/data';
 import { ILanguage } from '../../models/data';
-import ThemeButton from '../Buttons/ThemeButton';
+import Button from '../Buttons/Button';
 import useScroll from '../../hooks/useScroll';
+import useTheme from '../../hooks/useTheme';
+import useIsMounted from '../../hooks/useIsMounted';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +21,8 @@ const Header = () => {
   const data = useSelector(selectData);
   const { languagesList } = data.sections.header;
   const { scrollPercent } = useScroll();
+  const { theme, toggleTheme } = useTheme();
+  const isMounted = useIsMounted();
 
   const handleLangChange = () => {
     setIsOpen((prevValue: boolean) => !prevValue);
@@ -66,7 +72,16 @@ const Header = () => {
               </ul>
             )}
           </div>
-          <ThemeButton />
+          {isMounted && (
+            <Button
+              variant='primary'
+              onClick={toggleTheme}
+              className='ml-auto'
+              icon
+            >
+              {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+            </Button>
+          )}
         </div>
         <div className='w-full h-1 bg-light-card-bg dark:bg-dark-card-bg'>
           <div
