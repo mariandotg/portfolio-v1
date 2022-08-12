@@ -2,48 +2,40 @@ import { useState, useEffect } from 'react';
 
 const useScroll = () => {
   const [visible, setVisible] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-
-    if (scrolled > 300) setVisible(true);
-    else if (scrolled <= 300) setVisible(false);
-  };
-
-  const getDocHeight = () => {
-    return Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    );
-  };
+  const [scrollPercent, setScrollPercent] = useState('0%');
 
   useEffect(() => {
-    const calculateScrollDistance = () => {
-      requestAnimationFrame(() => {
-        const scrollTop = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const docHeight = getDocHeight();
+    const toggleVisible = () => {
+      const scrolled = document.documentElement.scrollTop;
 
-        const totalDocScrollLength = docHeight - windowHeight;
-        const scrollPosition = (scrollTop / totalDocScrollLength) * 100;
-
-        setScrollPosition(scrollPosition);
-      });
+      if (scrolled > 300) setVisible(true);
+      else if (scrolled <= 300) setVisible(false);
     };
 
-    window.addEventListener('scroll', toggleVisible);
-    window.addEventListener('scroll', calculateScrollDistance);
+    const calculateScrollDistance = () => {
+      const totalScroll = document.documentElement.scrollTop;
+      const winHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      const value = (totalScroll / winHeight) * 100;
+      const percent = `${value}%`;
+
+      if (value > 95) setScrollPercent('100%');
+      else setScrollPercent(percent);
+    };
+
+    const scrollListener = () => {
+      toggleVisible();
+      calculateScrollDistance();
+    };
+
+    window.addEventListener('scroll', scrollListener);
 
     return () => {
-      window.removeEventListener('scroll', toggleVisible);
-      window.removeEventListener('scroll', calculateScrollDistance);
+      window.removeEventListener('scroll', scrollListener);
     };
-  }, []);
+  }, [setScrollPercent]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -52,7 +44,7 @@ const useScroll = () => {
     });
   };
 
-  return { visible, scrollToTop, scrollPosition };
+  return { visible, scrollToTop, scrollPercent };
 };
 
 export default useScroll;

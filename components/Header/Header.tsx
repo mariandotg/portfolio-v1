@@ -16,7 +16,7 @@ const Header = () => {
   const router = useRouter();
   const data = useSelector(selectData);
   const { languagesList } = data.sections.header;
-  const { scrollPosition } = useScroll();
+  const { scrollPercent } = useScroll();
 
   const handleLangChange = () => {
     setIsOpen((prevValue: boolean) => !prevValue);
@@ -70,8 +70,8 @@ const Header = () => {
         </div>
         <div className='w-full h-1 bg-light-card-bg dark:bg-dark-card-bg'>
           <div
-            className='bg-light-primary dark:bg-dark-primary h-1 transition'
-            style={{ width: scrollPosition + '%' }}
+            className='h-1 transition bg-light-primary dark:bg-dark-primary'
+            style={{ width: scrollPercent }}
           ></div>
         </div>
       </header>
