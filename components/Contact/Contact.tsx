@@ -1,6 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+
 import * as Yup from 'yup';
 
 import { selectData } from '../../app/store/slices/data';
@@ -15,6 +17,7 @@ interface IInitialValues {
 }
 
 const Contact = () => {
+  const router = useRouter();
   const data = useSelector(selectData);
   const { title, cards, cta, feedback } = data.sections.contact;
 
@@ -62,6 +65,10 @@ const Contact = () => {
     touched,
   } = formik;
 
+  useEffect(() => {
+    resetForm();
+  }, [resetForm, router.locale]);
+
   return (
     <section className='flex flex-col items-end gap-4'>
       <h2 className='self-start text-xl font-bold text-light-primary dark:text-dark-primary'>
@@ -76,10 +83,22 @@ const Contact = () => {
             key={e.id}
             className='flex flex-col w-full gap-1 text-light-secondary dark:text-dark-secondary focus-within:text-light-primary dark:focus-within:text-dark-primary'
           >
-            <label className='font-bold '>{e.label}</label>
+            <label
+              className={`font-bold ${
+                errors[e.name] && touched[e.name] && 'text-error'
+              }`}
+            >
+              {e.label}
+            </label>
             {e.type === 'textarea' ? (
               <>
-                <div className='h-[192px] px-4 py-3 rounded-[8px] focus:outline-none border border-light-secondary dark:border-dark-secondary focus-within:border-light-primary dark:focus-within:border-dark-primary'>
+                <div
+                  className={`${
+                    errors[e.name] && touched[e.name]
+                      ? 'border-error'
+                      : 'border-light-secondary dark:border-dark-secondary'
+                  } h-[192px] px-4 py-3 rounded-[8px] focus:outline-none border focus-within:border-light-primary dark:focus-within:border-dark-primary`}
+                >
                   <textarea
                     name={e.name}
                     placeholder={e.placeholder}
@@ -102,7 +121,11 @@ const Contact = () => {
                   value={values[e.name]}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className='w-full px-4 py-3 rounded-[8px] bg-transparent border focus:outline-none border-light-secondary dark:border-dark-secondary focus:border-light-primary dark:focus:border-dark-primary text-light-text dark:text-dark-text'
+                  className={`${
+                    errors[e.name] && touched[e.name]
+                      ? 'border-error'
+                      : 'border-light-secondary dark:border-dark-secondary'
+                  } w-full px-4 py-3 rounded-[8px] bg-transparent border focus:outline-none focus:border-light-primary dark:focus:border-dark-primary text-light-text dark:text-dark-text`}
                 ></input>
                 {errors[e.name] && touched[e.name] && (
                   <span className='text-red-500'>{errors[e.name]}</span>
