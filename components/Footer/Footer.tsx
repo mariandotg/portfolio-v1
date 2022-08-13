@@ -8,6 +8,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
+import Button from '../Buttons/Button';
+
 interface Icons {
   [index: string]: any;
 }
@@ -29,9 +31,9 @@ const Footer = () => {
       <div className='flex w-full justify-evenly'>
         {socialMedia.map((e: ISocialMedia, i: number) => {
           return (
-            <a key={e.id} href={e.url} target='_blank' rel='noreferrer'>
+            <Button variant='text' key={e.id} url={e.url} icon>
               {icons[e.icon]}
-            </a>
+            </Button>
           );
         })}
       </div>
