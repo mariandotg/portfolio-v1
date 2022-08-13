@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 
@@ -22,6 +23,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <link rel='icon' href='./favicon.ico' />
+      </Head>
       <Header />
       <div className='flex flex-col gap-16 p-4'>
         <About />
