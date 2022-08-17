@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        mobile: '550px',
+        tablet: '834px',
+        desktop: '1024px',
+      },
       borderRadius: {
         base: '16px',
       },
