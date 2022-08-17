@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const nodemailer = require('nodemailer');
 
   const transporter = nodemailer.createTransport({
@@ -25,9 +28,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     ${req.body.from}</p>`,
   };
 
-  transporter.sendMail(mailData, (err: any, info: any) => {
-    if (err) console.log(err);
-    else console.log(info);
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailData, (err: any, info: any) => {
+      if (err) {
+        console.log(err);
+        reject(err);
+      } else {
+        console.log(info);
+        resolve(info);
+      }
+    });
   });
 
   res.status(200).end();
