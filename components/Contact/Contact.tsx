@@ -134,7 +134,9 @@ const Contact = () => {
             )}
           </div>
         ))}
-        <Button variant={cta.variant}>{cta.cta}</Button>
+        <Button variant={cta.variant} type='submit'>
+          {cta.cta}
+        </Button>
       </form>
     </section>
   );
