@@ -70,7 +70,7 @@ const Contact = () => {
   }, [resetForm, router.locale]);
 
   return (
-    <section className='flex flex-col items-end gap-4'>
+    <section className='flex flex-col items-end gap-4 tablet:col-span-2'>
       <h2 className='self-start text-xl font-bold text-light-primary dark:text-dark-primary'>
         {title}
       </h2>

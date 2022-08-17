@@ -8,11 +8,11 @@ const FeaturedProjects = () => {
   const { title, cards } = data.featuredProjects;
 
   return (
-    <section className='flex flex-col gap-4'>
+    <section className='flex flex-col gap-4 tablet:col-span-2'>
       <h2 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
         {title}
       </h2>
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 tablet:grid tablet:grid-cols-2'>
         {cards!.map((card: IProjectCard) => (
           <div key={card.id}>
             <img

@@ -11,7 +11,7 @@ const Skills = () => {
       <h2 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
         {title}
       </h2>
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 mobile:grid mobile:grid-cols-2 tablet:grid-cols-1'>
         {cards.map((card: ISkillCard) => (
           <div
             key={card.id}

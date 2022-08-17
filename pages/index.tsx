@@ -27,26 +27,34 @@ const Home: NextPage = () => {
         <link rel='icon' href='./favicon.ico' />
       </Head>
       <Header />
-      <div className='flex flex-col gap-16 p-4'>
-        <About />
-        <div className='flex flex-col gap-8'>
-          <Info />
-          <Skills />
-          <Education />
-          <JobExperience />
+      <div className='flex justify-center'>
+        <div className='flex flex-col tablet:max-w-5xl'>
+          <div className='flex flex-col gap-16 p-4'>
+            <About />
+            <div className='flex flex-col gap-8 tablet:grid tablet:grid-cols-3 tablet:gap-4'>
+              <section className='flex flex-col gap-8 tablet:row-span-4 tablet:gap-4'>
+                <Info />
+                <Skills />
+              </section>
+              <Education />
+              <JobExperience />
+              <FeaturedProjects />
+              <Contact />
+            </div>
+          </div>
+          <Button
+            variant='primary'
+            onClick={scrollToTop}
+            className={`${
+              visible ? 'inline' : 'hidden'
+            } fixed bottom-4 right-4`}
+            icon
+          >
+            <KeyboardDoubleArrowUpIcon />
+          </Button>
+          <Footer />
         </div>
-        <FeaturedProjects />
-        <Contact />
       </div>
-      <Button
-        variant='primary'
-        onClick={scrollToTop}
-        className={`${visible ? 'inline' : 'hidden'} fixed bottom-4 right-4`}
-        icon
-      >
-        <KeyboardDoubleArrowUpIcon />
-      </Button>
-      <Footer />
     </>
   );
 };

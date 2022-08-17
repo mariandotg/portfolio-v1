@@ -11,9 +11,9 @@ const Info = () => {
       <h2 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
         {title}
       </h2>
-      <div className='flex flex-col gap-4 p-4 bg-light-card-bg dark:bg-dark-card-bg rounded-base'>
+      <div className='flex flex-col gap-4 py-4 mobile:grid mobile:grid-cols-2 tablet:grid-cols-1'>
         {cards.map((item: IItem) => (
-          <div key={item.id} className='flex flex-col gap-1'>
+          <div key={item.id} className='flex flex-col gap-1 px-4'>
             <h3 className='text-lg font-bold text-light-primary dark:text-dark-primary'>
               {item.label}
             </h3>
