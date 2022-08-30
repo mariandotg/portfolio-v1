@@ -1,6 +1,4 @@
-const splitString = (string: string) => {
-  const a = string.split('<br />');
-  return a;
-};
+const splitString = (string: string, splitter: string) =>
+  string.split(splitter);
 
 export default splitString;

@@ -7,8 +7,8 @@ const About = () => {
   const data = useSelector(selectDataSections);
   const { title, cta, description } = data.about;
 
-  const titleFormatted = splitString(title);
-  const descriptionFormatted = splitString(description);
+  const titleFormatted = splitString(title, '<br />');
+  const descriptionFormatted = splitString(description, '<br />');
 
   return (
     <section className='flex flex-col gap-4 tablet:grid tablet:grid-cols-3'>
