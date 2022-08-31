@@ -14,8 +14,13 @@ const About = () => {
 
   return (
     <section className='flex flex-col gap-4 tablet:grid tablet:grid-cols-3'>
-      <div>
-        <Image className='w-full rounded-base' src={mePic} alt='Photo of me' />
+      <div className='relative w-full aspect-square'>
+        <Image
+          className='rounded-base'
+          src={mePic}
+          layout='fill'
+          alt='Photo of me'
+        />
       </div>
       <div className='flex flex-col gap-4 tablet:col-span-2 tablet:gap-8'>
         <Title title={title} />
