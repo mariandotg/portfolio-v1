@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <>
-      <header className='sticky top-0'>
+      <header className='sticky top-0 z-50'>
         <div className='flex w-full p-4 bg-light-bg dark:bg-dark-bg'>
           <div className='relative w-fit'>
             <button
