@@ -19,6 +19,7 @@ const About = () => {
           className='rounded-base'
           src={mePic}
           layout='fill'
+          priority={true}
           alt='Photo of me'
         />
       </div>

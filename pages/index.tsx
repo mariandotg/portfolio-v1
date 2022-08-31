@@ -25,6 +25,8 @@ const Home: NextPage = () => {
     <>
       <Head>
         <link rel='icon' href='./favicon.ico' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' />
+        <link rel='preconnect' href='https://fonts.googleapis.com/' />
       </Head>
       <Header />
       <div className='flex justify-center'>
