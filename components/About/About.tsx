@@ -1,5 +1,9 @@
 import { useSelector } from 'react-redux';
 import { selectDataSections } from '../../app/store/slices/data';
+
+import Image from 'next/image';
+import mePic from '../../public/me.webp';
+
 import Title from './Title';
 import Description from './Description';
 import Button from '../Buttons/Button';
@@ -10,7 +14,9 @@ const About = () => {
 
   return (
     <section className='flex flex-col gap-4 tablet:grid tablet:grid-cols-3'>
-      <img className='rounded-base' src='./me.png' alt='Photo of me' />
+      <div>
+        <Image className='w-full rounded-base' src={mePic} alt='Photo of me' />
+      </div>
       <div className='flex flex-col gap-4 tablet:col-span-2 tablet:gap-8'>
         <Title title={title} />
         <Description description={description} />
