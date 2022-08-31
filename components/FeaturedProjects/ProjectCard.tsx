@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Button from '../Buttons/Button';
 
 import { IProjectCard } from '../../models/data';
@@ -9,11 +10,15 @@ interface Props {
 const ProjectCard = ({ project }: Props) => {
   return (
     <li>
-      <img
-        className='object-cover object-left-top w-full h-52 rounded-tl-base rounded-tr-base'
-        src={project.image}
-        alt='project'
-      />
+      <div className='relative w-full h-52'>
+        <Image
+          className='object-left-top rounded-tl-base rounded-tr-base'
+          src={`https:${project.image}`}
+          layout='fill'
+          objectFit='cover'
+          alt={project.name}
+        />
+      </div>
       <div className='flex flex-col gap-4 p-4 bg-light-card-bg dark:bg-dark-card-bg rounded-bl-base rounded-br-base'>
         <div className='flex flex-col gap-2'>
           <h3 className='text-xl font-bold text-light-primary dark:text-dark-primary'>
