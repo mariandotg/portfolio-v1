@@ -71,6 +71,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
       }
       return {
         props: {},
+        revalidate: 1,
       };
     }
 );
