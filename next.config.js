@@ -5,6 +5,9 @@ const nextConfig = {
     defaultLocale: 'en',
   },
   reactStrictMode: true,
+  images: {
+    domains: ['images.ctfassets.net'],
+  },
 };
 
 module.exports = nextConfig;
