@@ -29,7 +29,7 @@ const Button = (props: IButton) => {
   const styles = `${variants[variant]} ${className} ${
     icon
       ? 'p-4 rounded-base border'
-      : 'px-7 py-3 w-fit border rounded-xl font-bold text-button'
+      : 'px-7 py-3 w-fit border rounded-xl font-bold whitespace-nowrap text-button'
   } disabled:opacity-50 disabled:cursor-not-allowed`;
 
   return (
