@@ -59,11 +59,15 @@ const Header = () => {
                     <li
                       key={l.id}
                       value={l.slug}
+                      tabIndex={0}
                       className={`py-2 ${
                         l.slug === data.language
                           ? 'before:content-["●"] before:mr-2 text-light-primary dark:text-dark-primary'
                           : ''
                       }`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') return changeLanguage(l.slug);
+                      }}
                       onClick={() => changeLanguage(l.slug)}
                     >
                       {l.displayName.toLocaleUpperCase()}
