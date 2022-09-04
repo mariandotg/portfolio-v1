@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import useScroll from '../../hooks/useScroll';
+import useTheme from '../../hooks/useTheme';
+import useIsMounted from '../../hooks/useIsMounted';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -8,12 +11,10 @@ import LanguageIcon from '@mui/icons-material/Language';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
+import Button from '../Buttons/Button';
+
 import { selectData } from '../../app/store/slices/data';
 import { ILanguage } from '../../models/data';
-import Button from '../Buttons/Button';
-import useScroll from '../../hooks/useScroll';
-import useTheme from '../../hooks/useTheme';
-import useIsMounted from '../../hooks/useIsMounted';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +78,7 @@ const Header = () => {
               variant='primary'
               onClick={toggleTheme}
               className='ml-auto'
+              ariaLabel='Toggle theme button'
               icon
             >
               {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}

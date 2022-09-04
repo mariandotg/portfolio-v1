@@ -10,6 +10,7 @@ export interface IButton {
   type?: 'button' | 'reset' | 'submit';
   className?: string;
   icon?: boolean;
+  ariaLabel?: string;
 }
 
 const Button = (props: IButton) => {
@@ -22,12 +23,13 @@ const Button = (props: IButton) => {
     type = 'button',
     className,
     icon,
+    ariaLabel,
   } = props;
 
   const styles = `${variants[variant]} ${className} ${
     icon
-      ? ' p-4 rounded-base border'
-      : 'px-7 py-3 w-fit border rounded-xl font-bold text-button font-mono'
+      ? 'p-4 rounded-base border'
+      : 'px-7 py-3 w-fit border rounded-xl font-bold text-button'
   } disabled:opacity-50 disabled:cursor-not-allowed`;
 
   return (
@@ -37,6 +39,7 @@ const Button = (props: IButton) => {
           className={styles}
           onClick={onClick}
           href={url}
+          aria-label={ariaLabel}
           target='_blank'
           rel='noreferrer'
         >
@@ -48,6 +51,7 @@ const Button = (props: IButton) => {
           onClick={onClick}
           disabled={disabled}
           type={type}
+          aria-label={ariaLabel}
         >
           {children}
         </button>
