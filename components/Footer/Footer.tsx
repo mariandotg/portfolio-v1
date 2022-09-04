@@ -29,9 +29,15 @@ const Footer = () => {
   return (
     <footer className='flex flex-col items-center gap-4 p-8'>
       <div className='flex w-full justify-evenly'>
-        {socialMedia.map((e: ISocialMedia, i: number) => {
+        {socialMedia.map((e: ISocialMedia) => {
           return (
-            <Button variant='text' key={e.id} url={e.url} icon>
+            <Button
+              variant='text'
+              key={e.id}
+              url={e.url}
+              ariaLabel='Social media icon'
+              icon
+            >
               {icons[e.icon]}
             </Button>
           );

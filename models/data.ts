@@ -57,7 +57,7 @@ export interface ICardEntry extends IBaseEntry {
 export interface IButton {
   cta?: string;
   children?: ReactNode;
-  variant: 'primary' | 'secondary';
+  variant: 'text' | 'primary' | 'secondary';
   url?: string;
   disabled?: boolean;
 }
@@ -155,7 +155,11 @@ export interface ICourseCard {
   courseTitle: string;
   period: string;
   description?: string;
-  certificate?: IButton;
+  certificate?: {
+    cta: string;
+    url: string;
+    variant: 'text' | 'primary' | 'secondary';
+  };
   id: string;
 }
 

@@ -5,7 +5,8 @@
         ? localStorage.theme
         : 'dark'
       : 'dark';
-  if (theme === 'dark') {
-    document.querySelector('html').classList.add('dark');
-  }
+
+  document
+    .querySelector('html')
+    .classList.replace(theme === 'dark' ? 'light' : 'dark', theme);
 })();
