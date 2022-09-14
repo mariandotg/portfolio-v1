@@ -30,15 +30,19 @@ const ProjectCard = ({ project }: Props) => {
           <p>{project.description}</p>
         </div>
         <div className='flex self-end gap-4'>
-          <Button
-            variant={project.repository.variant}
-            url={project.repository.url}
-          >
-            {project.repository.cta}
-          </Button>
-          <Button variant={project.site.variant} url={project.site.url}>
-            {project.site.cta}
-          </Button>
+          {project.repository && (
+            <Button
+              variant={project.repository.variant}
+              url={project.repository.url}
+            >
+              {project.repository.cta}
+            </Button>
+          )}
+          {project.site && (
+            <Button variant={project.site.variant} url={project.site.url}>
+              {project.site.cta}
+            </Button>
+          )}
         </div>
       </div>
     </li>
