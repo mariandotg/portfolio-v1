@@ -26,7 +26,7 @@ const About = () => {
       <div className='flex flex-col gap-4 tablet:col-span-2 tablet:gap-8'>
         <Title title={title} />
         <Description description={description} />
-        <Button className='self-end' variant={cta.variant}>
+        <Button className='self-end' variant={cta.variant} url={cta.url}>
           {cta.cta}
         </Button>
       </div>
