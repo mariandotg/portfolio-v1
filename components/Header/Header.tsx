@@ -9,6 +9,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 import BrandLogo from '../../public/mariandotg_logo.svg';
 import Button from '../Buttons/Button';
@@ -18,6 +20,7 @@ import { IMenuItem } from '../../models/data';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavOpen, setNavOpen] = useState(false);
   const router = useRouter();
   const data = useSelector(selectData);
   const { menu } = data.sections.header;
@@ -31,6 +34,8 @@ const Header = () => {
   const langList = completeLangsList.filter(
     (item: IMenuItem) => item.slug !== data.language
   );
+
+  const handleOpenNav = () => setNavOpen((prevValue: boolean) => !prevValue);
 
   const handleLangChange = () => setIsOpen((prevValue: boolean) => !prevValue);
 
@@ -51,16 +56,16 @@ const Header = () => {
             className='w-[92px] h-[58px] dark:fill-dark-text py-2 pr-4'
             viewBox='0 0 92 58'
           />
-          <div className='flex gap-4 font-bold'>
+          <ul className='hidden gap-4 font-bold mobile:flex '>
             {menuItemsList.map((item: IMenuItem) => (
-              <span
+              <li
                 key={item.id}
                 className='flex items-center gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
               >
                 {item.displayName}
-              </span>
+              </li>
             ))}
-            <div className='relative w-fill'>
+            <li className='relative w-fill'>
               <div
                 className='flex items-center h-full gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
                 onClick={handleLangChange}
@@ -69,7 +74,7 @@ const Header = () => {
                 {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
               </div>
               {isOpen && (
-                <ul className='absolute px-4 py-2 text-right rounded-lg shadow-lg w-fit bg-light-card-bg dark:bg-dark-card-bg'>
+                <ul className='absolute z-20 px-4 py-2 text-right rounded-lg shadow-lg w-fit bg-light-card-bg dark:bg-dark-card-bg'>
                   {langList.map((item: IMenuItem) => {
                     return (
                       <li
@@ -89,13 +94,22 @@ const Header = () => {
                   })}
                 </ul>
               )}
-            </div>
-          </div>
+            </li>
+          </ul>
+          <Button
+            variant='primary'
+            onClick={handleOpenNav}
+            className='ml-auto mobile:hidden'
+            ariaLabel='Open menu'
+            icon
+          >
+            {!isNavOpen ? <MenuIcon /> : <CloseIcon />}
+          </Button>
           {isMounted && (
             <Button
               variant='primary'
               onClick={toggleTheme}
-              className='ml-auto'
+              className='ml-4 mobile:ml-auto'
               ariaLabel='Toggle theme button'
               icon
             >
@@ -108,6 +122,50 @@ const Header = () => {
             className='h-1 transition bg-light-primary dark:bg-dark-primary'
             style={{ width: scrollPercent }}
           ></div>
+        </div>
+        <div className='relative'>
+          {isNavOpen && (
+            <ul className='absolute z-10 w-full font-bold shadow-lg bg-light-card-bg dark:bg-dark-card-bg mobile:hidden'>
+              {menuItemsList.map((item: IMenuItem) => (
+                <li
+                  key={item.id}
+                  className='p-4 cursor-pointer w-fit hover:text-light-primary hover:dark:text-dark-primary'
+                >
+                  {item.displayName}
+                </li>
+              ))}
+              <li className='relative px-4 w-fit'>
+                <div
+                  className='flex items-center h-full gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
+                  onClick={handleLangChange}
+                >
+                  {currentLanguage!.displayName}
+                  {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+                </div>
+                {isOpen && (
+                  <ul className='absolute z-20 px-4 py-2 text-right rounded-lg shadow-lg w-fit bg-light-card-bg dark:bg-dark-card-bg'>
+                    {langList.map((item: IMenuItem) => {
+                      return (
+                        <li
+                          key={item.id}
+                          value={item.slug}
+                          tabIndex={0}
+                          className='flex items-center py-2 cursor-pointer w-fill hover:text-light-primary hover:dark:text-dark-primary'
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter')
+                              return changeLanguage(item.slug);
+                          }}
+                          onClick={() => changeLanguage(item.slug)}
+                        >
+                          {item.displayName}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </li>
+            </ul>
+          )}
         </div>
       </header>
     </>
