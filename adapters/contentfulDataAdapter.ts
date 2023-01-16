@@ -31,7 +31,7 @@ const contentfulDataAdapter = (data: Array<ISectionEntry>) => {
                 cards,
               }
             : { ...restBase, socialMedia: cards }
-          : { ...restBase, languagesList: cards }
+          : { ...restBase, menu: cards }
         : restBase;
 
       if (section.fields.key === 'header' || section.fields.key === 'footer') {
