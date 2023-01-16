@@ -14,7 +14,7 @@ import BrandLogo from '../../public/mariandotg_logo.svg';
 import Button from '../Buttons/Button';
 
 import { selectData } from '../../app/store/slices/data';
-import { ILanguage } from '../../models/data';
+import { IMenuItem } from '../../models/data';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ const Header = () => {
   const completeLangsList = menu.slice(2);
 
   const langList = completeLangsList.filter(
-    (l: ILanguage) => l.slug !== data.language
+    (item: IMenuItem) => item.slug !== data.language
   );
 
   const handleLangChange = () => setIsOpen((prevValue: boolean) => !prevValue);
@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   const currentLanguage = completeLangsList.find(
-    (l: ILanguage) => l.slug === data.language
+    (item: IMenuItem) => item.slug === data.language
   );
 
   return (
@@ -52,12 +52,12 @@ const Header = () => {
             viewBox='0 0 92 58'
           />
           <div className='flex gap-4 font-bold'>
-            {menuItemsList.map((l: ILanguage) => (
+            {menuItemsList.map((item: IMenuItem) => (
               <span
-                key={l.id}
+                key={item.id}
                 className='flex items-center gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
               >
-                {l.displayName}
+                {item.displayName}
               </span>
             ))}
             <div className='relative w-fill'>
@@ -65,24 +65,25 @@ const Header = () => {
                 className='flex items-center h-full gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
                 onClick={handleLangChange}
               >
-                {currentLanguage.displayName}
+                {currentLanguage!.displayName}
                 {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
               </div>
               {isOpen && (
                 <ul className='absolute px-4 py-2 text-right rounded-lg shadow-lg w-fit bg-light-card-bg dark:bg-dark-card-bg'>
-                  {langList.map((l: ILanguage) => {
+                  {langList.map((item: IMenuItem) => {
                     return (
                       <li
-                        key={l.id}
-                        value={l.slug}
+                        key={item.id}
+                        value={item.slug}
                         tabIndex={0}
                         className='flex items-center py-2 cursor-pointer w-fill hover:text-light-primary hover:dark:text-dark-primary'
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter') return changeLanguage(l.slug);
+                          if (e.key === 'Enter')
+                            return changeLanguage(item.slug);
                         }}
-                        onClick={() => changeLanguage(l.slug)}
+                        onClick={() => changeLanguage(item.slug)}
                       >
-                        {l.displayName}
+                        {item.displayName}
                       </li>
                     );
                   })}

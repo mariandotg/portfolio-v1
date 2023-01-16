@@ -99,7 +99,7 @@ export interface IRawData {
   items: Array<ISectionEntry>;
 }
 
-export interface ILanguage {
+export interface IMenuItem {
   displayName: string;
   slug: string;
   id: string;
@@ -110,7 +110,7 @@ export interface IHeader {
   key: string;
   language: string;
   id: string;
-  languagesList: Array<ILanguage>;
+  menu: Array<IMenuItem>;
 }
 
 export interface IAbout {
