@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import useScroll from '../../hooks/useScroll';
 import useTheme from '../../hooks/useTheme';
 import useIsMounted from '../../hooks/useIsMounted';
@@ -11,21 +10,14 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import BrandLogo from '../../public/mariandotg_logo.svg';
 import Button from '../Buttons/Button';
+import MenuItems from './MenuItems';
 import LangSelector from './LangSelector';
-
-import { selectData } from '../../app/store/slices/data';
-import { IMenuItem } from '../../models/data';
 
 const Header = () => {
   const [isNavOpen, setNavOpen] = useState(false);
   const { scrollPercent } = useScroll();
   const { theme, toggleTheme } = useTheme();
   const isMounted = useIsMounted();
-
-  const data = useSelector(selectData);
-  const { menu } = data.sections.header;
-
-  const menuItemsList = menu.slice(0, 2);
 
   const handleOpenNav = () => setNavOpen((prevValue: boolean) => !prevValue);
 
@@ -37,15 +29,8 @@ const Header = () => {
             className='w-[92px] h-[58px] dark:fill-dark-text py-2 pr-4'
             viewBox='0 0 92 58'
           />
-          <ul className='hidden gap-4 font-bold mobile:flex '>
-            {menuItemsList.map((item: IMenuItem) => (
-              <li
-                key={item.id}
-                className='flex items-center gap-2 py-4 cursor-pointer hover:text-light-primary hover:dark:text-dark-primary'
-              >
-                {item.displayName}
-              </li>
-            ))}
+          <ul className='hidden gap-4 font-bold mobile:flex mobile:items-center'>
+            <MenuItems />
             <LangSelector />
           </ul>
           <Button
@@ -78,14 +63,7 @@ const Header = () => {
         <div className='relative'>
           {isNavOpen && (
             <ul className='absolute z-10 flex flex-col w-full gap-4 p-4 font-bold shadow-lg bg-light-card-bg dark:bg-dark-card-bg mobile:hidden'>
-              {menuItemsList.map((item: IMenuItem) => (
-                <li
-                  key={item.id}
-                  className='cursor-pointer w-fit hover:text-light-primary hover:dark:text-dark-primary'
-                >
-                  {item.displayName}
-                </li>
-              ))}
+              <MenuItems />
               <LangSelector />
             </ul>
           )}
