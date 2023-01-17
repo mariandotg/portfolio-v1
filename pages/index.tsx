@@ -62,7 +62,9 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ locale }) => {
       try {
-        await store.dispatch(fetchData(locale!)).unwrap();
+        await store
+          .dispatch(fetchData({ type: 'section', lang: locale! }))
+          .unwrap();
       } catch (rejectedValueOrSerializedError) {
         console.log('error', rejectedValueOrSerializedError);
       }
