@@ -38,9 +38,9 @@ const Home: NextPage = () => {
               <Education />
               <JobExperience />
               <FeaturedProjects />
-              <Contact />
             </div>
           </div>
+          <Contact />
           <Button
             variant='primary'
             onClick={scrollToTop}
