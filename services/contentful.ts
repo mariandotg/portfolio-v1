@@ -1,6 +1,6 @@
 import { IRawData } from '../models/data';
 
-export const getContentfulData = (lang?: string) => {
+export const getContentfulData = (type: string, lang?: string) => {
   const contentful = require('contentful');
   const client = contentful.createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -8,7 +8,7 @@ export const getContentfulData = (lang?: string) => {
   });
   return client
     .getEntries({
-      content_type: 'section',
+      content_type: type,
       'fields.language': lang,
       include: 1,
     })

@@ -10,8 +10,8 @@ import contentfulDataAdapter from '../../../adapters/contentfulDataAdapter';
 
 export const fetchData = createAsyncThunk(
   'data/fetchData',
-  async (lang: string) => {
-    const response = await getContentfulData(lang);
+  async ({ type, lang }: { type: string; lang: string }) => {
+    const response = await getContentfulData(type, lang);
     return { response, lang };
   }
 );
