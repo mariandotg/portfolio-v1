@@ -1,99 +1,72 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 import useScroll from '../../hooks/useScroll';
 import useTheme from '../../hooks/useTheme';
 import useIsMounted from '../../hooks/useIsMounted';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import LanguageIcon from '@mui/icons-material/Language';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
+import BrandLogo from '../../public/mariandotg_logo.svg';
 import Button from '../Buttons/Button';
-
-import { selectData } from '../../app/store/slices/data';
-import { ILanguage } from '../../models/data';
+import MenuItems from './MenuItems';
+import LangSelector from './LangSelector';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-  const data = useSelector(selectData);
-  const { languagesList } = data.sections.header;
+  const [isNavOpen, setNavOpen] = useState(false);
   const { scrollPercent } = useScroll();
   const { theme, toggleTheme } = useTheme();
   const isMounted = useIsMounted();
 
-  const handleLangChange = () => {
-    setIsOpen((prevValue: boolean) => !prevValue);
-  };
-
-  const changeLanguage = (lang: string) => {
-    if (lang === data.language) return;
-    handleLangChange();
-    router.push(`/${lang}`, `/${lang}`, { locale: lang });
-  };
-
-  const currentLanguage = languagesList
-    .filter((l: ILanguage) => l.slug === data.language)[0]
-    .displayName.toLocaleUpperCase();
+  const handleOpenNav = () => setNavOpen((prevValue: boolean) => !prevValue);
 
   return (
     <>
       <header className='sticky top-0 z-50'>
-        <div className='flex w-full p-4 bg-light-bg dark:bg-dark-bg'>
-          <div className='relative w-fit'>
-            <button
-              className='flex items-center gap-2 py-4'
-              onClick={handleLangChange}
-            >
-              <LanguageIcon />
-              <span>{currentLanguage}</span>
-              {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-            </button>
-            {isOpen && (
-              <ul className='absolute w-full px-4 py-2 text-right bg-light-card-bg dark:bg-dark-card-bg rounded-base'>
-                {languagesList.map((l: ILanguage) => {
-                  return (
-                    <li
-                      key={l.id}
-                      value={l.slug}
-                      tabIndex={0}
-                      className={`py-2 ${
-                        l.slug === data.language
-                          ? 'before:content-["●"] before:mr-2 text-light-primary dark:text-dark-primary'
-                          : ''
-                      }`}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') return changeLanguage(l.slug);
-                      }}
-                      onClick={() => changeLanguage(l.slug)}
-                    >
-                      {l.displayName.toLocaleUpperCase()}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+        <nav className='flex w-full p-4 bg-light-bg dark:bg-dark-bg'>
+          <BrandLogo
+            className='w-[92px] h-[58px] dark:fill-dark-text py-2 pr-4'
+            viewBox='0 0 92 58'
+          />
+          <ul className='hidden gap-4 font-bold mobile:flex mobile:items-center'>
+            <MenuItems />
+            <LangSelector />
+          </ul>
+          <Button
+            variant='primary'
+            onClick={handleOpenNav}
+            className='ml-auto mobile:hidden'
+            ariaLabel='Open menu'
+            icon
+          >
+            {!isNavOpen ? <MenuIcon /> : <CloseIcon />}
+          </Button>
           {isMounted && (
             <Button
               variant='primary'
               onClick={toggleTheme}
-              className='ml-auto'
+              className='ml-4 mobile:ml-auto'
               ariaLabel='Toggle theme button'
               icon
             >
               {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
             </Button>
           )}
-        </div>
+        </nav>
         <div className='w-full h-1 bg-light-card-bg dark:bg-dark-card-bg'>
           <div
             className='h-1 transition bg-light-primary dark:bg-dark-primary'
             style={{ width: scrollPercent }}
           ></div>
+        </div>
+        <div className='relative'>
+          {isNavOpen && (
+            <ul className='absolute z-10 flex flex-col w-full gap-4 p-4 font-bold shadow-lg bg-light-card-bg dark:bg-dark-card-bg mobile:hidden'>
+              <MenuItems />
+              <LangSelector />
+            </ul>
+          )}
         </div>
       </header>
     </>
